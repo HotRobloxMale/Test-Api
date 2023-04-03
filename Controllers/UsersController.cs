@@ -7,6 +7,9 @@ using Microsoft.Extensions.Configuration;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using Azure;
+using Microsoft.AspNetCore.JsonPatch;
+
 
 namespace testapi.Controllers
 {
@@ -78,5 +81,6 @@ namespace testapi.Controllers
                return Ok(checkuser);
             }
         }
+
     }
 }
