@@ -76,12 +76,26 @@ namespace testapi.Controllers
             {
                 return NotFound();
             }
-
-            // Remove user from database
             dbContext.Contacts.Remove(delcontact);
             await dbContext.SaveChangesAsync();
 
             return Ok();
         }
-    }
+        [HttpPut]
+        [Route("EditContactput/{contact_id}")]
+        public async Task <IActionResult> EditContactput(int contact_id, string first_name, string last_name, string email, int phone_number)
+        {
+            var contactput = await dbContext.Contacts.FirstOrDefaultAsync(u => u.contact_id == contact_id);
+            if(contactput == null)
+            {
+                return NotFound();
+            }
+            contactput.first_name = first_name;
+            contactput.last_name = last_name;
+            contactput.email = email;
+            contactput.phone_number = phone_number;
+            await dbContext.SaveChangesAsync();
+            return Ok();
+        }
+            }
 }
